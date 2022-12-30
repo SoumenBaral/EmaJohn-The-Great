@@ -7,6 +7,7 @@ import Review from './Pages/Review';
 import Login from './Pages/Login';
 import NotFound from './Pages/NotFound';
 import SignUp from './Pages/SignUp'
+import RequireAuth from './Pages/RequireAuth';
 function App() {
   return (
     <div >
@@ -14,7 +15,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Orders></Orders>}></Route>
         <Route path='/review' element={<Review></Review>}></Route>
-        <Route path='/inventory' element={<Inventory></Inventory>}></Route>
+        <Route path='/inventory' element={
+          <RequireAuth>
+            <Inventory></Inventory>
+          </RequireAuth>
+        }></Route>
         <Route path='/Login' element={<Login></Login>}></Route>
         <Route path='*' element={<NotFound></NotFound>}> </Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
