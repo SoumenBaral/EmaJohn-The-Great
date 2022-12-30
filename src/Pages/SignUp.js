@@ -8,7 +8,7 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth)
+    const [createUserWithEmailAndPassword, user, loading] = useCreateUserWithEmailAndPassword(auth)
     const handleEmailBlur = event => {
         setEmail(event.target.value);
     }
@@ -30,7 +30,7 @@ const SignUp = () => {
             setError('Password must be 6 characters or longer');
             return;
         }
-        createUserWithEmailAndPassword(email, password);
+        createUserWithEmailAndPassword(email, password)
     }
 
     return (
@@ -51,7 +51,7 @@ const SignUp = () => {
                         <input onBlur={handleConfirmPasswordBlur} className='w-[500px] border  h-[55px]' type="password" name="confirm-password" id="" required />
                     </div>
                     <p style={{ color: 'red' }}>{error}</p>
-
+                    {loading && <p>loading..</p>}
                     <input className='form-submit w-[500px] h-[55px] bg-orange-400 mt-10 rounded-md hover:bg-orange-500 cursor-pointer text-white font-semibold' type="submit" value="Sign Up" />
                 </form>
                 <p className='m-10'>

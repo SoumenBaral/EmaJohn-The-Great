@@ -8,6 +8,7 @@ import Login from './Pages/Login';
 import NotFound from './Pages/NotFound';
 import SignUp from './Pages/SignUp'
 import RequireAuth from './Pages/RequireAuth';
+import ProceedShipment from './Component/ProceedShipment';
 function App() {
   return (
     <div >
@@ -20,6 +21,11 @@ function App() {
             <Inventory></Inventory>
           </RequireAuth>
         }></Route>
+        <Route path='/shipment' element={
+        <RequireAuth>
+          <ProceedShipment></ProceedShipment>
+        </RequireAuth>}
+        ></Route>
         <Route path='/Login' element={<Login></Login>}></Route>
         <Route path='*' element={<NotFound></NotFound>}> </Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
