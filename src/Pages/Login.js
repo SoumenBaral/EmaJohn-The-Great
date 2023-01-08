@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+
     const [
         signInWithEmailAndPassword,
         user,
@@ -15,19 +13,15 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    const handleEmailBlur = event => {
-        setEmail(event.target.value);
-    }
 
-    const handlePasswordBlur = event => {
-        setPassword(event.target.value);
-    }
 
     if (user) {
         navigate(from, { replace: true });
     }
 
     const handleUserSignIn = event => {
+        const email = event.target.email.value;
+        const password = event.target.password.value
         event.preventDefault();
         signInWithEmailAndPassword(email, password);
     }
@@ -38,11 +32,11 @@ const Login = () => {
                 <form onSubmit={handleUserSignIn} className='text-lg m-10' >
                     <div className="mb-5">
                         <label className='block' htmlFor="email">Email</label>
-                        <input onBlur={handleEmailBlur} className='w-[500px] border  h-[55px]' type="email" name="email" id="" required />
+                        <input className='w-[500px] border  h-[55px]' type="email" name="email" id="" required />
                     </div>
                     <div className="input-group">
                         <label className='block' htmlFor="password">Password</label>
-                        <input onBlur={handlePasswordBlur} className='w-[500px] border  h-[55px]' type="password" name="password" id="" required />
+                        <input className='w-[500px] border  h-[55px]' type="password" name="password" id="" required />
                     </div>
                     <p style={{ color: 'red' }}>{error?.message}</p>
                     {

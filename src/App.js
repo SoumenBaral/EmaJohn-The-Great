@@ -9,12 +9,14 @@ import NotFound from './Pages/NotFound';
 import SignUp from './Pages/SignUp'
 import RequireAuth from './Pages/RequireAuth';
 import ProceedShipment from './Component/ProceedShipment';
+import Shop from './Pages/Shop';
 function App() {
   return (
     <div >
       <Header></Header>
       <Routes>
-        <Route path='/' element={<Orders></Orders>}></Route>
+      <Route path='/' element={<Shop></Shop>}></Route>
+        <Route path='/order' element={<Orders></Orders>}></Route>
         <Route path='/review' element={<Review></Review>}></Route>
         <Route path='/inventory' element={
           <RequireAuth>
@@ -22,9 +24,9 @@ function App() {
           </RequireAuth>
         }></Route>
         <Route path='/shipment' element={
-        <RequireAuth>
-          <ProceedShipment></ProceedShipment>
-        </RequireAuth>}
+          <RequireAuth>
+            <ProceedShipment></ProceedShipment>
+          </RequireAuth>}
         ></Route>
         <Route path='/Login' element={<Login></Login>}></Route>
         <Route path='*' element={<NotFound></NotFound>}> </Route>
